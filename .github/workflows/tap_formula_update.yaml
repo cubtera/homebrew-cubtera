@@ -1,0 +1,23 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update_formula]
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout homebrew-cubtera
+      uses: actions/checkout@v4
+
+    - name: Update formula
+      run: |
+        VERSION="${{ github.event.client_payload.version }}"
+        VERSION=${VERSION#v}  # Remove 'v' prefix if present
+        ZIP_SHA="${{ github.event.client_payload.zip_sha }}"
+        TAR_SHA="${{ github.event.client_payload.tar_sha }}"
+
+        echo "Updating formula to version $VERSION"
+        echo "ZIP_SHA: $ZIP_SHA"
+        echo "TAR_SHA: $TAR_SHA"
