@@ -21,3 +21,24 @@ jobs:
         echo "Updating formula to version $VERSION"
         echo "ZIP_SHA: $ZIP_SHA"
         echo "TAR_SHA: $TAR_SHA"
+        BASE_URL="https://github.com/cubtera/cubtera/releases/download/${{ github.event.client_payload.version }}"
+
+        sed -i.bak "s/version \".*\"/version \"$VERSION\"/" Formula/cubtera.rb
+        sed -i.bak "s|url \".*cubtera-mac-aarch64.zip\"|url \"$BASE_URL/cubtera-darvin-intel.zip\"|" Formula/cubtera.rb
+        sed -i.bak "s/sha256 \".*\" # Intel macOS/sha256 \"$ZIP_SHA\" # Intel macOS/" Formula/cubtera.rb
+        sed -i.bak "s|url \".*cubtera-mac-aarch64.zip\"|url \"$BASE_URL/cubtera-darvin-aarch64.zip\"|" Formula/cubtera.rb
+        sed -i.bak "s/sha256 \".*\" # M1 macOS/sha256 \"$ZIP_SHA\" # Intel macOS/" Formula/cubtera.rb
+        sed -i.bak "s/assert_match \"cubtera [0-9.]*\"/assert_match \"cubtera $VERSION\"/" Formula/cubtera.rb
+
+        # Remove backup files
+        rm Formula/cubtera.rb.bak
+        
+        # Display the changes
+        echo "Updated Formula/cubtera.rb:"
+        cat Formula/cubtera.rb
+        
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add Formula/cubtera.rb
+        git commit -m "Update cubtera to $VERSION"
+        git push
