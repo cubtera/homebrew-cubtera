@@ -8,7 +8,7 @@ class Cubtera < Formula
   version "0.1.0"
 
   def install
-    bin.install "target/aarch64-apple-darwin/release/cubtera"
+    bin.install "target/aarch64-apple-darwin/release/cubtera" => "cubtera"
   end
 
   test do
