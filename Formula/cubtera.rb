@@ -6,21 +6,16 @@ class Cubtera < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/cubtera/cubtera/releases/download/v0.1.0/cubtera-darwin-intel.zip"
-      sha256 "" # Intel macOS
+      sha256 "4b7cd379cfddf0661d851a0f032d93423865e490d15a7e8bd83b86d9d02e9797" # MacOS Intel
     else
-      url "test/test/test/cubtera-darwin-aarch64.zip"
-      sha256 "4b7cd379cff3f0661d851a0f032d93423865e490d15a7e8bd83b86d9d02e9797" # M1 macOS
+      url "https://github.com/cubtera/cubtera/releases/download/v0.1.0/cubtera-darwin-aarch64.zip"
+      sha256 "4b7cd379cff3f0661d851a0f032d93423865e490d15a7e8bd83b86d9d02e9797" # MacOS Aarch64
     end
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/cubtera/cubtera/releases/download/v0.1.0/cubtera.zip"
-      sha256 "a0f6fc1860ba5a3cc3542d9661bdfdcd72e9d5355d026a9c10dd2271f5eb1c02"
-    else
-      url "https://github.com/cubtera/cubtera/releases/download/v0.1.0/cubtera.zip"
-      sha256 "a0f6fc1860ba5a3cc3542d9661bdfdcd72e9d5355d026a9c10dd2271f5eb1c02"
-
+    url "https://github.com/cubtera/cubtera/releases/download/v0.1.0/cubtera-linux-intel.zip"
+    sha256 "a0f6fc1860ba5a3cc3542d9661bdfdcd72e9d5355d026a9c10dd2271f5eb1c02" # Linux Intel
   end
 
   def install
