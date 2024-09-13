@@ -1,21 +1,21 @@
 class Cubtera < Formula
     desc "Immersive cubic dimensions experience."
     homepage "https://github.com/cubtera/cubtera"
-    version "1.0.1"
+    version "1.0.2"
 
     on_macos do
         if Hardware::CPU.intel?
-            url "https://github.com/cubtera/cubtera/releases/download/v1.0.1/cubtera-darwin-intel.zip"
-            sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+            url "https://github.com/cubtera/cubtera/releases/download/v1.0.2/cubtera-darwin-intel.zip"
+            sha256 "02eb4a8db3d57d562f924afac6a4297c4d6e6abc77d20f73e971ed709f4b42b4"
         else
-            url "https://github.com/cubtera/cubtera/releases/download/v1.0.1/cubtera-darwin-aarch64.zip"
+            url "https://github.com/cubtera/cubtera/releases/download/v1.0.2/cubtera-darwin-aarch64.zip"
             sha256 ""
         end
     end
 
     on_linux do
-        url "https://github.com/cubtera/cubtera/releases/download/v1.0.1/cubtera-linux-intel.zip"
-        sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+        url "https://github.com/cubtera/cubtera/releases/download/v1.0.2/cubtera-linux-intel.zip"
+        sha256 "b589b4b22ab2c9f1166eab3f38b48e7e22c920f0dec34c8a71bc5346d7dc1417"
     end
 
     def install
@@ -23,6 +23,6 @@ class Cubtera < Formula
     end
 
     test do
-        assert_match "cubtera 1.0.1", shell_output("#{bin}/cubtera --version", 2)
+        assert_match "cubtera 1.0.2", shell_output("#{bin}/cubtera --version", 2)
     end
 end
