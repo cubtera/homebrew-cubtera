@@ -15,8 +15,8 @@ jobs:
       run: |
         VERSION="${{ github.event.client_payload.version }}"
         VERSION=${VERSION#v}  # Remove 'v' prefix if present
-        MAC_INTEL_ZIP_SHA="${{ github.event.client_payload.mac_aarch_zip_sha }}"
-        MAC_AARCH_ZIP_SHA="${{ github.event.client_payload.tar_sha }}"
+        MAC_INTEL_ZIP_SHA="${{ github.event.client_payload.mac_intel_zip_sha }}"
+        MAC_AARCH_ZIP_SHA="${{ github.event.client_payload.mac_aarch_zip_sha }}"
         LINUX_INTEL_ZIP_SHA="${{ github.event.client_payload.linux_intel_zip_sha }}"
 
         sed -e "s/VERSION/$VERSION/g" \
@@ -25,7 +25,7 @@ jobs:
         -e "s/LINUX_INTEL_ZIP_SHA/$LINUX_INTEL_ZIP_SHA/g" \
         ./templates/cubtera.tpl.rb > ./Formula/cubtera.rb
 
-        cat ./Formula/cubtera.rb > ./Formula/cubtera.@${VERSION}.rb
+        cp ./Formula/cubtera.rb ./Formula/cubtera.@${VERSION}.rb
   
         # Display the changes
         echo "Updated Formula/cubtera.rb:"
@@ -33,6 +33,6 @@ jobs:
         
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git add Formula/cubtera.rb
+        git add Formula/cubtera*.rb
         git commit -m "Update cubtera latest version to $VERSION"
         git push
