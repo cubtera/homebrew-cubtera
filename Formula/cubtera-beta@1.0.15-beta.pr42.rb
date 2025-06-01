@@ -6,10 +6,10 @@ class CubteraBeta < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/cubtera/cubtera/releases/download/v1.0.15-beta.pr42/cubtera-darwin-intel-beta.zip"
-      sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+      sha256 "95b4ea3c353222abb4bbbbd44abea297c209be4b1405e84f81341751c5bcae5b"
     else
       url "https://github.com/cubtera/cubtera/releases/download/v1.0.15-beta.pr42/cubtera-darwin-aarch64-beta.zip"
-      sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+      sha256 "22fe89ad7ea78652e3c09883369ae2ca45e009a4950d1a0ac412b51feb222e41"
     end
   end
 
