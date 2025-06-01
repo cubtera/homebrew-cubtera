@@ -25,7 +25,7 @@ jobs:
         -e "s/LINUX_INTEL_ZIP_SHA/$LINUX_INTEL_ZIP_SHA/g" \
         ./templates/cubtera-beta.tpl.rb > ./Formula/cubtera-beta.rb
 
-        cp ./Formula/cubtera-beta.rb ./Formula/cubtera.@${VERSION}.rb
+        cp ./Formula/cubtera-beta.rb ./Formula/cubtera-beta@${VERSION}.rb
   
         # Display the changes
         echo "Updated Formula/cubtera-beta.rb:"
