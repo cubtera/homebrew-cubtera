@@ -1,0 +1,62 @@
+name: Validate Formulas
+
+on:
+  pull_request:
+    paths:
+      - 'Formula/**'
+      - 'templates/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        formula: [cubtera, cubtera-beta]
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+
+    - name: Validate formula syntax
+      run: |
+        brew ruby -e "load 'Formula/${{ matrix.formula }}.rb'"
+
+    - name: Audit formula
+      run: |
+        brew audit --new-formula Formula/${{ matrix.formula }}.rb
+
+    - name: Test formula installation (dry run)
+      run: |
+        brew install --dry-run Formula/${{ matrix.formula }}.rb
+
+  test-template-generation:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Test template substitution
+      run: |
+        # Test stable template
+        sed -e "s/VERSION/1.0.0/g" \
+            -e "s/MAC_INTEL_ZIP_SHA/test_sha/g" \
+            -e "s/MAC_AARCH_ZIP_SHA/test_sha/g" \
+            -e "s/LINUX_INTEL_ZIP_SHA/test_sha/g" \
+            ./templates/cubtera.tpl.rb > test_stable.rb
+            
+        # Test beta template  
+        sed -e "s/VERSION/1.0.0-beta.pr1/g" \
+            -e "s/MAC_INTEL_ZIP_SHA/test_sha/g" \
+            -e "s/MAC_AARCH_ZIP_SHA/test_sha/g" \
+            -e "s/LINUX_INTEL_ZIP_SHA/test_sha/g" \
+            ./templates/cubtera-beta.tpl.rb > test_beta.rb
+            
+        echo "✅ Template generation successful"
+        echo "Generated stable formula:"
+        cat test_stable.rb
+        echo -e "\n---\nGenerated beta formula:"
+        cat test_beta.rb 
