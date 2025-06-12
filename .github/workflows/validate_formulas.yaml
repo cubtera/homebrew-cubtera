@@ -27,7 +27,7 @@ jobs:
 
     - name: Audit formula
       run: |
-        brew audit --new-formula Formula/${{ matrix.formula }}.rb
+        brew audit --new Formula/${{ matrix.formula }}.rb
 
     - name: Test formula installation (dry run)
       run: |
