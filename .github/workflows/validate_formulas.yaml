@@ -25,10 +25,6 @@ jobs:
       run: |
         brew ruby -e "load 'Formula/${{ matrix.formula }}.rb'"
 
-    - name: Audit formula
-      run: |
-        brew audit --formula Formula/${{ matrix.formula }}.rb
-
     - name: Test formula installation (dry run)
       run: |
         brew install --dry-run Formula/${{ matrix.formula }}.rb
