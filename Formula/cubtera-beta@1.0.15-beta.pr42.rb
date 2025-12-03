@@ -9,13 +9,13 @@ class CubteraBeta < Formula
       sha256 "95b4ea3c353222abb4bbbbd44abea297c209be4b1405e84f81341751c5bcae5b"
     else
       url "https://github.com/cubtera/cubtera/releases/download/v1.0.15-beta.pr42/cubtera-darwin-aarch64-beta.zip"
-      sha256 "22fe89ad7ea78652e3c09883369ae2ca45e009a4950d1a0ac412b51feb222e41"
+      sha256 "e578c178cace32c2fb5b7de1dc102d8936c80744ff985bb79cae1115d5c31a5e"
     end
   end
 
   on_linux do
     url "https://github.com/cubtera/cubtera/releases/download/v1.0.15-beta.pr42/cubtera-linux-intel-beta.zip"
-    sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+    sha256 "e82c4c8dc56ff87702508dd0bacf381b9649d96510c4618745bd951cc1448f5e"
   end
 
   def install
