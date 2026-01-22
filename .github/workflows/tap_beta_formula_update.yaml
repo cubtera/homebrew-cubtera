@@ -15,14 +15,14 @@ jobs:
       run: |
         VERSION="${{ github.event.client_payload.version }}"
         VERSION=${VERSION#v}  # Remove 'v' prefix if present
-        MAC_INTEL_ZIP_SHA="${{ github.event.client_payload.mac_intel_zip_sha }}"
         MAC_AARCH_ZIP_SHA="${{ github.event.client_payload.mac_aarch_zip_sha }}"
         LINUX_INTEL_ZIP_SHA="${{ github.event.client_payload.linux_intel_zip_sha }}"
+        LINUX_ARM64_SHA256_ZIP="${{ github.event.client_payload.linux_arm64_zip_sha }}"
 
         sed -e "s/VERSION/$VERSION/g" \
-        -e "s/MAC_INTEL_ZIP_SHA/$MAC_INTEL_ZIP_SHA/g" \
         -e "s/MAC_AARCH_ZIP_SHA/$MAC_AARCH_ZIP_SHA/g" \
         -e "s/LINUX_INTEL_ZIP_SHA/$LINUX_INTEL_ZIP_SHA/g" \
+        -e "s/LINUX_ARM64_SHA256_ZIP/$LINUX_ARM64_SHA256_ZIP/g" \
         ./templates/cubtera-beta.tpl.rb > ./Formula/cubtera-beta.rb
 
         cp ./Formula/cubtera-beta.rb ./Formula/cubtera-beta@${VERSION}.rb
