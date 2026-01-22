@@ -4,18 +4,17 @@ class CubteraBeta < Formula
   version "VERSION"
   
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/cubtera/cubtera/releases/download/vVERSION/cubtera-darwin-intel-beta.zip"
-      sha256 "MAC_INTEL_ZIP_SHA"
-    else
-      url "https://github.com/cubtera/cubtera/releases/download/vVERSION/cubtera-darwin-aarch64-beta.zip"
-      sha256 "MAC_AARCH_ZIP_SHA"
-    end
+    url "https://github.com/cubtera/cubtera/releases/download/vVERSION/cubtera-darwin-aarch64-beta.zip"
+    sha256 "MAC_AARCH_ZIP_SHA"
   end
 
   on_linux do
-    url "https://github.com/cubtera/cubtera/releases/download/vVERSION/cubtera-linux-intel-beta.zip"
-    sha256 "LINUX_INTEL_ZIP_SHA"
+    if Hardware::CPU.intel?
+      url "https://github.com/cubtera/cubtera/releases/download/vVERSION/cubtera-linux-intel-beta.zip"
+      sha256 "LINUX_INTEL_ZIP_SHA"
+    else
+      url "https://github.com/cubtera/cubtera/releases/download/vVERSION/cubtera-darwin-aarch64-beta.zip"
+      sha256 "LINUX_ARM64_SHA256_ZIP"
   end
 
   def install
